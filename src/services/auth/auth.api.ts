@@ -14,6 +14,9 @@ const useLoginMutation = () => {
       queryClient.invalidateQueries({ queryKey: ['login'] });
       message.success('Успешно');
     },
+    onError: () => {
+      message.error('Телефон номер или пароль неверный');
+    },
   });
 };
 

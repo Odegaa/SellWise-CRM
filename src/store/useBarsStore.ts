@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 
 interface IStore {
   toggle: boolean;
-  setToggle: () => void;
+  toggleOpen: () => void;
   toggleClose: () => void;
 }
 
@@ -11,7 +11,7 @@ const useBarsStore = create(
   persist<IStore>(
     (set) => ({
       toggle: false,
-      setToggle: () => set((state) => ({ toggle: !state.toggle })),
+      toggleOpen: () => set({ toggle: true }),
       toggleClose: () => set({ toggle: false }),
     }),
     {
