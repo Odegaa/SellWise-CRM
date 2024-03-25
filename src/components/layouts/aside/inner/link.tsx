@@ -7,3 +7,5 @@ export const link = [
   { path: '/courses', name: 'Курсы', icon: <ImBooks /> },
   { path: '/students', name: 'Студенты', icon: <PiStudentFill /> },
 ];
+
+export const teacherLink = [{ path: '/my-courses', name: 'Мои Курсы', icon: <ImBooks /> }];

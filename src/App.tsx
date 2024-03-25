@@ -6,14 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { Router } from './components/routes/Router';
 
-const client = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      staleTime: Infinity,
-    },
-  },
-});
+const client = new QueryClient();
 
 const App: React.FC = () => (
   <QueryClientProvider client={client}>

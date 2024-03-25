@@ -73,20 +73,22 @@ const StudentsForm: React.FC = () => {
               className="w-full !border-slate-300 placeholder:tracking-wider rounded-md py-[5px] px-2 transition-colors !focus:border-blue-700 border-[1px]"
             />
           </Form.Item>
-          <Form.Item
-            label="Курсы"
-            name="course_id"
-            required
-            rules={[{ required: true, message: 'Пожалуйста заполняйте поле, курсы!' }]}
-          >
-            <Select
-              className="w-full"
-              options={courses?.data.data.map((category) => ({
-                label: category.name,
-                value: category.id,
-              }))}
-            />
-          </Form.Item>
+          {!paramsForm && (
+            <Form.Item
+              label="Курсы"
+              name="course_id"
+              required
+              rules={[{ required: true, message: 'Пожалуйста заполняйте поле, курсы!' }]}
+            >
+              <Select
+                className="w-full"
+                options={courses?.data?.map((category) => ({
+                  label: category.name,
+                  value: category.id,
+                }))}
+              />
+            </Form.Item>
+          )}
         </CustomForm>
       </CustomModal>
     </div>

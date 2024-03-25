@@ -1,4 +1,7 @@
-import { Form, Input, Select } from 'antd';
+// eslint-disable-next-line object-curly-newline
+import { Form, Input, Select, TimePicker } from 'antd';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import dayjs from 'dayjs';
 import React from 'react';
 import { CustomButton, CustomForm, CustomModal } from 'src/components';
 import { useCreateCourseMutation, useUpdateCourseMutation } from 'src/services/courses/courses.api';
@@ -23,6 +26,7 @@ const CoursesForm: React.FC = () => {
         duration: values.duration,
         count_student: values.count_student,
         user_id: values.user_id,
+        time: values.time.toString().split(' ')[4],
       });
     } else {
       update({
@@ -32,6 +36,7 @@ const CoursesForm: React.FC = () => {
         price: values.price,
         count_student: values.count_student,
         user_id: values.user_id,
+        time: values.time.toString().split(' ')[4],
       });
     }
     form.resetFields();
@@ -60,7 +65,7 @@ const CoursesForm: React.FC = () => {
           </Form.Item>
           <Form.Item
             label="Цена"
-            name="phone"
+            name="price"
             required
             rules={[{ required: true, message: 'Пожалуйста заполняйте поле, цена!' }]}
           >
@@ -68,13 +73,13 @@ const CoursesForm: React.FC = () => {
           </Form.Item>
           <Form.Item
             label="Выбрать преподователя"
-            name="course_id"
+            name="user_id"
             required
             rules={[{ required: true, message: 'Пожалуйста заполняйте поле, курсы!' }]}
           >
             <Select
               className="w-full"
-              options={data?.data.data.map((teacher) => ({
+              options={data?.data?.map((teacher) => ({
                 label: teacher.name,
                 value: teacher.id,
               }))}
@@ -96,7 +101,25 @@ const CoursesForm: React.FC = () => {
             required
             rules={[{ required: true, message: 'Пожалуйста заполняйте поле, длительность!' }]}
           >
-            <Input type="number" className="w-full" />
+            <Select
+              className="w-full"
+              options={[
+                { label: '1 - месяц', value: 1 },
+                { label: '2 - месяца', value: 2 },
+                { label: '3 - месяца', value: 3 },
+                { label: '4 - месяца', value: 4 },
+                { label: '6 - месяцев', value: 5 },
+                { label: '8 - месяцев', value: 6 },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item
+            label="Дата"
+            name="time"
+            required
+            rules={[{ required: true, message: 'Пожалуйста заполняйте поле, дата!' }]}
+          >
+            <TimePicker defaultOpenValue={dayjs('00:00', 'HH:mm')} format="HH:mm" />
           </Form.Item>
         </CustomForm>
       </CustomModal>

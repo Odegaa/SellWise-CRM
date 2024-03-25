@@ -12,12 +12,12 @@ const StudentsTable: React.FC = () => {
   return (
     <CustomTable
       loading={isLoading}
-      dataSource={data?.data.data}
+      dataSource={data?.data}
       columns={columns}
       pagination={{
         current: page,
         onChange: (currentPage) => setPage(currentPage),
-        total: data?.data.pagination.total,
+        total: data?.pagination?.total,
       }}
     />
   );

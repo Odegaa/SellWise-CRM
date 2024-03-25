@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { message } from 'antd';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { login } from './auth.services';
+import { getMe, login } from './auth.services';
 import { TLoginValues } from './auth.types';
 
 const useLoginMutation = () => {
@@ -20,4 +20,11 @@ const useLoginMutation = () => {
   });
 };
 
-export { useLoginMutation };
+const useGetMeQuery = () =>
+  // eslint-disable-next-line implicit-arrow-linebreak
+  useQuery({
+    queryFn: getMe,
+    queryKey: ['get-me'],
+  });
+
+export { useGetMeQuery, useLoginMutation };

@@ -1,18 +1,25 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable @typescript-eslint/indent */
+/* eslint-disable react/jsx-indent */
 import React from 'react';
 import { MdExitToApp } from 'react-icons/md';
 import { NavLink, useNavigate } from 'react-router-dom';
 import logo from 'src/assets/img/logo.png';
 import { CustomConfirm } from 'src/components';
+import { useGetMeQuery } from 'src/services';
 import { useAuthStorageStore } from 'src/store';
 
-import { link } from './link';
+import { link, teacherLink } from './link';
 
 const AsideInner: React.FC = () => {
   const navigate = useNavigate();
+  const { data, isLoading } = useGetMeQuery();
   const { signOut } = useAuthStorageStore();
+
   const logout = () => {
     signOut();
     navigate('/login');
+    window.location.reload();
   };
 
   return (
@@ -23,16 +30,29 @@ const AsideInner: React.FC = () => {
           <span className="selection:bg-none">Universal ACADEMY</span>
         </h1>
         <div className="flex flex-col gap-1 py-4 px-2">
-          {link.map(({ path, name, icon }) => (
-            <NavLink
-              to={path}
-              key={path}
-              className="px-3 py-2 rounded-lg hover:bg-slate-800 aria-[current]:bg-slate-800 flex items-center gap-2"
-            >
-              <span>{icon}</span>
-              <span>{name}</span>
-            </NavLink>
-          ))}
+          {isLoading
+            ? 'loading...'
+            : data?.data.role_id === 1
+            ? link.map(({ path, name, icon }) => (
+                <NavLink
+                  to={path}
+                  key={path}
+                  className="px-3 py-2 rounded-lg hover:bg-slate-800 aria-[current]:bg-slate-800 flex items-center gap-2"
+                >
+                  <span>{icon}</span>
+                  <span>{name}</span>
+                </NavLink>
+              ))
+            : teacherLink.map(({ path, icon, name }) => (
+                <NavLink
+                  to={path}
+                  key={path}
+                  className="px-3 py-2 rounded-lg hover:bg-slate-800 aria-[current]:bg-slate-800 flex items-center gap-2"
+                >
+                  <span>{icon}</span>
+                  <span>{name}</span>
+                </NavLink>
+              ))}
         </div>
       </div>
       <div className="py-4 px-2 w-full">

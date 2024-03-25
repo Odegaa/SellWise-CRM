@@ -11,11 +11,11 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const { signIn } = useAuthStorageStore();
   // eslint-disable-next-line object-curly-newline
-  const { mutate: login, data, isPending, isSuccess } = useLoginMutation();
+  const { mutate, data, isPending, isSuccess } = useLoginMutation();
 
   const onFinish: React.FormEventHandler<HTMLFormElement> | undefined = (e: any) => {
     e.preventDefault();
-    login({ phone: e.target[0].value.split(' ').join(''), password: e.target[1].value });
+    mutate({ phone: e.target[0].value.split(' ').join(''), password: e.target[1].value });
   };
 
   React.useEffect(() => {
@@ -59,7 +59,7 @@ const Login: React.FC = () => {
           </div>
           <button
             type="submit"
-            className="bg-blue-700 text-white flex items-center py-1 px-10 rounded-md tracking-widest uppercase font-semibold transition hover:bg-blue-500"
+            className="bg-green-600 text-white flex items-center px-10 rounded-md tracking-widest uppercase font-semibold transition-colors hover:bg-green-500"
           >
             {isPending ? (
               <Spin className="w-full h-full my-2 mx-4" />

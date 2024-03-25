@@ -1,3 +1,5 @@
+import { TimePickerProps } from 'antd';
+
 export type TCourse = {
   id: number;
   teacher: TCourseTeacher;
@@ -5,6 +7,7 @@ export type TCourse = {
   duration: number;
   price: number;
   count_student: number;
+  time: string | TimePickerProps;
   created_at: string;
   updated_at: string;
 };
@@ -26,4 +29,5 @@ export type TChangeCourse = {
   duration: number;
   price: number;
   count_student: number;
+  time: string | TimePickerProps;
 };

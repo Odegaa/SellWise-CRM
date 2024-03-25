@@ -33,10 +33,17 @@ function useCoursesColumn() {
       render: (_, student) => student.price,
     },
     {
+      title: 'Дата',
+      dataIndex: 'time',
+      key: 'time',
+      render: (_, student) => student?.time || '-',
+    },
+    {
       title: 'Длительность',
       dataIndex: 'duration',
       key: 'duration',
       render: (_, student) => student.duration,
+      width: 100,
     },
     {
       title: 'Количество студентов',

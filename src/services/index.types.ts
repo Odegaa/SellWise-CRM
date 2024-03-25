@@ -1,12 +1,4 @@
-export type TResponse<T> = {
-  succes: string;
-  data: TResponseData<T>;
-};
-
-export type TResponseData<T> = {
-  data: T[];
-  pagination: TPagination;
-};
+export type TResponse<T> = { data: T[]; pagination: TPagination };
 
 export type TPagination = {
   total: number;
