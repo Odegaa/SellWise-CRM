@@ -12,10 +12,10 @@ import {
 } from './students.services';
 import { TChangeStudent } from './students.types';
 
-const useGetStudentsQuery = (page: number) =>
+const useGetStudentsQuery = () =>
   useQuery({
-    queryFn: () => axiosGetStudents(page),
-    queryKey: ['students', page],
+    queryFn: axiosGetStudents,
+    queryKey: ['students'],
   });
 
 const useGetStudentByIdQuery = (id: number) =>

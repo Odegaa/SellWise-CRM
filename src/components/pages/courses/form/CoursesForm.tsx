@@ -1,7 +1,5 @@
 // eslint-disable-next-line object-curly-newline
-import { Form, Input, Select, TimePicker } from 'antd';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import dayjs from 'dayjs';
+import { Form, Input, Select } from 'antd';
 import React from 'react';
 import { CustomButton, CustomForm, CustomModal } from 'src/components';
 import { useCreateCourseMutation, useUpdateCourseMutation } from 'src/services/courses/courses.api';
@@ -75,13 +73,13 @@ const CoursesForm: React.FC = () => {
             label="Выбрать преподователя"
             name="user_id"
             required
-            rules={[{ required: true, message: 'Пожалуйста заполняйте поле, курсы!' }]}
+            rules={[{ required: true, message: 'Пожалуйста выберите курс!' }]}
           >
             <Select
               className="w-full"
               options={data?.data?.map((teacher) => ({
-                label: teacher.name,
-                value: teacher.id,
+                label: teacher?.name,
+                value: teacher?.id,
               }))}
             />
           </Form.Item>
@@ -99,7 +97,7 @@ const CoursesForm: React.FC = () => {
             label="Длительность"
             name="duration"
             required
-            rules={[{ required: true, message: 'Пожалуйста заполняйте поле, длительность!' }]}
+            rules={[{ required: true, message: 'Пожалуйста выберите длительность!' }]}
           >
             <Select
               className="w-full"
@@ -117,9 +115,26 @@ const CoursesForm: React.FC = () => {
             label="Дата"
             name="time"
             required
-            rules={[{ required: true, message: 'Пожалуйста заполняйте поле, дата!' }]}
+            rules={[{ required: true, message: 'Пожалуйста выберите дату!' }]}
           >
-            <TimePicker defaultOpenValue={dayjs('00:00', 'HH:mm')} format="HH:mm" />
+            <Select
+              className="w-full"
+              options={[
+                { label: '08:00:00', value: '08:00:00' },
+                { label: '09:00:00', value: '09:00:00' },
+                { label: '10:00:00', value: '10:00:00' },
+                { label: '11:00:00', value: '11:00:00' },
+                { label: '12:00:00', value: '12:00:00' },
+                { label: '13:00:00', value: '13:00:00' },
+                { label: '14:00:00', value: '14:00:00' },
+                { label: '15:00:00', value: '15:00:00' },
+                { label: '16:00:00', value: '16:00:00' },
+                { label: '17:00:00', value: '17:00:00' },
+                { label: '18:00:00', value: '18:00:00' },
+                { label: '19:00:00', value: '19:00:00' },
+                { label: '20:00:00', value: '20:00:00' },
+              ]}
+            />
           </Form.Item>
         </CustomForm>
       </CustomModal>

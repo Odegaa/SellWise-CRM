@@ -1,5 +1,12 @@
 import React from 'react';
+import { Section } from 'src/components';
 
-const MyCourses: React.FC = () => <div>MyCourses</div>;
+import { MyCoursesTable } from './table';
+
+const MyCourses: React.FC = () => (
+  <Section>
+    <MyCoursesTable />
+  </Section>
+);
 
 export { MyCourses };

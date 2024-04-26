@@ -4,6 +4,7 @@ import { ColumnsType } from 'antd/es/table';
 import { CiEdit } from 'react-icons/ci';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { CustomConfirm } from 'src/components';
+import { useGetCoursesQuery } from 'src/services/courses/courses.api';
 import { useDeleteStudentMutation } from 'src/services/students/students.api';
 import { TStudents } from 'src/services/students/students.types';
 import { useFormStorageStore } from 'src/store';
@@ -11,6 +12,7 @@ import { useFormStorageStore } from 'src/store';
 function useStudentsColumn() {
   const { setParamsForm } = useFormStorageStore();
   const { mutate: deleteStudent } = useDeleteStudentMutation();
+  const { data: courses } = useGetCoursesQuery();
 
   const columns: ColumnsType<TStudents> = [
     {
@@ -37,6 +39,33 @@ function useStudentsColumn() {
       dataIndex: 'course_name',
       key: 'course_name',
       render: (_, student) => student.course.name,
+      filters: courses?.data?.map((course) => ({
+        text: course.name,
+        value: course.id,
+      })),
+      onFilter: (value, record) => record.course.id === value,
+    },
+    {
+      title: 'Взнос',
+      dataIndex: 'isPayed',
+      key: 'isPayed',
+      render: (_, student) => 'Не оплачено',
+      filters: [
+        {
+          text: 'Оплачено',
+          value: 1,
+        },
+        {
+          text: 'Не оплачено',
+          value: 2,
+        },
+      ],
+    },
+    {
+      title: 'Дата',
+      dataIndex: 'create_at',
+      key: 'create_at',
+      render: (_, student) => student.created_at,
     },
     {
       title: 'Действия',

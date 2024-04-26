@@ -4,8 +4,8 @@ import { TResponse } from '../index.types';
 
 import { TChangeStudent, TStudents } from './students.types';
 
-const axiosGetStudents = async (page: number): Promise<TResponse<TStudents>> => {
-  const response = await api.get('students', { params: { page } });
+const axiosGetStudents = async (): Promise<TResponse<TStudents>> => {
+  const response = await api.get('students');
   return response.data;
 };
 

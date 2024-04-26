@@ -83,8 +83,8 @@ const StudentsForm: React.FC = () => {
               <Select
                 className="w-full"
                 options={courses?.data?.map((category) => ({
-                  label: category.name,
-                  value: category.id,
+                  label: category?.name,
+                  value: category?.id,
                 }))}
               />
             </Form.Item>

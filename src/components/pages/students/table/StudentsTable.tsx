@@ -5,8 +5,7 @@ import { useGetStudentsQuery } from 'src/services/students/students.api';
 import { useStudentsColumn } from './useStudentsColumn';
 
 const StudentsTable: React.FC = () => {
-  const [page, setPage] = React.useState(1);
-  const { data, isLoading } = useGetStudentsQuery(page);
+  const { data, isLoading } = useGetStudentsQuery();
   const columns = useStudentsColumn();
 
   return (
@@ -14,11 +13,7 @@ const StudentsTable: React.FC = () => {
       loading={isLoading}
       dataSource={data?.data}
       columns={columns}
-      pagination={{
-        current: page,
-        onChange: (currentPage) => setPage(currentPage),
-        total: data?.pagination?.total,
-      }}
+      pagination={data?.pagination}
     />
   );
 };

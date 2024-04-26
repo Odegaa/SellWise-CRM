@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { ColumnsType } from 'antd/es/table';
-import { CiEdit } from 'react-icons/ci';
+import { CiCircleMore, CiEdit } from 'react-icons/ci';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 import { CustomConfirm } from 'src/components';
 import { useDeleteCourseMuation } from 'src/services/courses/courses.api';
 import { TCourse } from 'src/services/courses/courses.types';
@@ -37,6 +38,12 @@ function useCoursesColumn() {
       dataIndex: 'time',
       key: 'time',
       render: (_, student) => student?.time || '-',
+    },
+    {
+      title: 'Дни',
+      dataIndex: 'days',
+      key: 'days',
+      render: (_, student) => 'Четные',
     },
     {
       title: 'Длительность',
@@ -79,6 +86,9 @@ function useCoursesColumn() {
               <RiDeleteBin6Line />
             </span>
           </CustomConfirm>
+          <Link className="text-2xl cursor-pointer hover:text-slate-800" to={`${teacher.id}`}>
+            <CiCircleMore />
+          </Link>
         </div>
       ),
     },
