@@ -46,22 +46,6 @@ function useStudentsColumn() {
       onFilter: (value, record) => record.course.id === value,
     },
     {
-      title: 'Взнос',
-      dataIndex: 'isPayed',
-      key: 'isPayed',
-      render: (_, student) => 'Не оплачено',
-      filters: [
-        {
-          text: 'Оплачено',
-          value: 1,
-        },
-        {
-          text: 'Не оплачено',
-          value: 2,
-        },
-      ],
-    },
-    {
       title: 'Дата',
       dataIndex: 'create_at',
       key: 'create_at',

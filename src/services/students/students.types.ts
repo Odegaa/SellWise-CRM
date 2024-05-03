@@ -13,6 +13,7 @@ export type TStudentCourses = {
   name: string;
   duration: number;
   price: number;
+  days: string;
   count_student: number;
   created_at: string;
   updated_at: string;

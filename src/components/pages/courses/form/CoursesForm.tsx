@@ -24,7 +24,7 @@ const CoursesForm: React.FC = () => {
         duration: values.duration,
         count_student: values.count_student,
         user_id: values.user_id,
-        time: values.time.toString().split(' ')[4],
+        time: values.time.toString(),
       });
     } else {
       update({
@@ -34,7 +34,7 @@ const CoursesForm: React.FC = () => {
         price: values.price,
         count_student: values.count_student,
         user_id: values.user_id,
-        time: values.time.toString().split(' ')[4],
+        time: values.time.toString(),
       });
     }
     form.resetFields();
